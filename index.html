@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manisha Baloda — AI Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: #2a2a3a;
+    --accent: #7c6af7;
+    --accent2: #a78bfa;
+    --green: #34d399;
+    --text: #f0f0f8;
+    --text2: #9090b0;
+    --text3: #5a5a7a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 40px;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--text2); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 100px 40px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(124,106,247,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 780px; text-align: center; position: relative; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(124,106,247,0.1); border: 1px solid rgba(124,106,247,0.3);
+    border-radius: 99px; padding: 6px 16px; margin-bottom: 28px;
+    font-size: 13px; color: var(--accent2); font-weight: 500;
+  }
+  .hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: inline-block; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .hero h1 .name { color: var(--accent2); }
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: var(--text2); margin-bottom: 16px; font-weight: 400;
+  }
+  .hero-desc { font-size: 15px; color: var(--text3); max-width: 560px; margin: 0 auto 40px; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: white; padding: 13px 28px;
+    border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 14px;
+    transition: all 0.2s; border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-secondary {
+    background: var(--surface2); color: var(--text); padding: 13px 28px;
+    border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 14px;
+    border: 1px solid var(--border); transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent2); transform: translateY(-1px); }
+
+  /* STATS BAR */
+  .stats-bar {
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    padding: 28px 40px;
+    display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--accent2); }
+  .stat-label { font-size: 12px; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+
+  /* SECTIONS */
+  section { padding: 80px 40px; max-width: 1000px; margin: 0 auto; }
+  .section-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px; }
+  .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 4vw, 36px); font-weight: 700; margin-bottom: 14px; }
+  .section-desc { color: var(--text2); font-size: 15px; max-width: 560px; line-height: 1.7; margin-bottom: 48px; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; cursor: pointer;
+    transition: all 0.2s; position: relative; overflow: hidden;
+    text-decoration: none; display: block;
+  }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .project-card:hover { border-color: rgba(124,106,247,0.4); transform: translateY(-3px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-tag {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    padding: 3px 10px; border-radius: 99px; margin-bottom: 14px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .tag-ai { background: rgba(124,106,247,0.15); color: var(--accent2); }
+  .tag-web { background: rgba(52,211,153,0.15); color: var(--green); }
+  .tag-hack { background: rgba(251,146,60,0.15); color: #fb923c; }
+  .project-title { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+  .project-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
+  .project-tech { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tech-pill { font-size: 11px; color: var(--text3); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; }
+  .project-award { display: flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 12px; color: #fb923c; font-weight: 500; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .service-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px; transition: all 0.2s;
+  }
+  .service-card:hover { border-color: rgba(124,106,247,0.3); }
+  .service-icon { font-size: 28px; margin-bottom: 12px; }
+  .service-title { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .service-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 14px; }
+  .service-price { font-size: 18px; font-weight: 700; color: var(--accent2); }
+  .service-price span { font-size: 12px; color: var(--text3); font-weight: 400; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .skill-pill {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 16px; text-align: center;
+    font-size: 13px; font-weight: 500; color: var(--text2);
+    transition: all 0.2s;
+  }
+  .skill-pill:hover { border-color: var(--accent); color: var(--accent2); }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 48px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .contact-box::before {
+    content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(124,106,247,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-box h2 { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+  .contact-box p { color: var(--text2); margin-bottom: 32px; font-size: 15px; }
+  .contact-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 20px;
+    text-decoration: none; color: var(--text2); font-size: 14px; font-weight: 500;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent2); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center; padding: 24px 40px;
+    color: var(--text3); font-size: 13px;
+  }
+
+  /* MOBILE */
+  @media (max-width: 640px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 20px 40px; }
+    .stats-bar { gap: 30px; padding: 24px 20px; }
+    section { padding: 60px 20px; }
+    .projects-grid, .services-grid { grid-template-columns: 1fr; }
+    .contact-box { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Manisha<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Available for freelance projects</div>
+    <h1>Hi, I'm <span class="name">Manisha Baloda</span><br>AI Developer & Web Builder</h1>
+    <p class="hero-sub">First-year CSE (AI/ML) student at LPU — building real AI systems, not just learning them.</p>
+    <p class="hero-desc">I build AI agents, chatbots, and websites for Indian businesses. From multi-agent systems to full-stack apps — I ship things that actually work.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">See My Services</a>
+      <a href="#projects" class="btn-secondary">View Projects</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Projects Built</div></div>
+  <div class="stat"><div class="stat-num">2</div><div class="stat-label">Hackathons</div></div>
+  <div class="stat"><div class="stat-num">Google</div><div class="stat-label">Kaggle Intensive</div></div>
+  <div class="stat"><div class="stat-num">₹0</div><div class="stat-label">Cost to Contact</div></div>
+</div>
+
+<section id="projects">
+  <p class="section-label">Portfolio</p>
+  <h2 class="section-title">Projects I've shipped</h2>
+  <p class="section-desc">Real projects built under real deadlines — not tutorials, not clones.</p>
+
+  <div class="projects-grid">
+    <a class="project-card" href="https://github.com/manishabaloda4-cloud/farmsense" target="_blank">
+      <span class="project-tag tag-ai">Multi-Agent AI</span>
+      <div class="project-title">🌾 FarmSense</div>
+      <div class="project-desc">Multi-agent AI system for Indian farmers — crop advice, weather analysis, and market prices powered by Gemini API and LangChain agents.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">Gemini API</span>
+        <span class="tech-pill">LangChain</span>
+        <span class="tech-pill">Multi-agent</span>
+      </div>
+      <div class="project-award">🏆 Google 5-Day AI Agents Intensive · Kaggle</div>
+    </a>
+
+    <a class="project-card" href="https://github.com/manishabaloda4-cloud/redrob-candidate-ranker" target="_blank">
+      <span class="project-tag tag-hack">Hackathon Winner</span>
+      <div class="project-title">🎯 Redrob Candidate Ranker</div>
+      <div class="project-desc">Hybrid 4-layer AI candidate ranking system — automates resume screening, skill matching, and candidate scoring for hiring pipelines.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">AI/ML</span>
+        <span class="tech-pill">NLP</span>
+        <span class="tech-pill">Ranking</span>
+      </div>
+      <div class="project-award">🏆 Hack2skill · India Runs Data & AI Challenge</div>
+    </a>
+
+    <a class="project-card" href="https://github.com/manishabaloda4-cloud/bizagent-ai" target="_blank">
+      <span class="project-tag tag-ai">AI Agent</span>
+      <div class="project-title">🤖 BizAgent AI</div>
+      <div class="project-desc">AI-powered business assistant for Indian SMBs — multi-agent system helping small businesses automate customer handling and operations.</div>
+      <div class="project-tech">
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">FastAPI</span>
+        <span class="tech-pill">Multi-agent</span>
+        <span class="tech-pill">Fireworks AI</span>
+      </div>
+      <div class="project-award">🏆 AMD Developer Hackathon ACT II</div>
+    </a>
+
+    <a class="project-card" href="https://github.com/manishabaloda4-cloud/career-craft-ai-" target="_blank">
+      <span class="project-tag tag-ai">AI Tool</span>
+      <div class="project-title">💼 Career Craft AI</div>
+      <div class="project-desc">AI-powered career guidance platform — resume analysis, job matching, and personalized career recommendations for Indian students.</div>
+      <div class="project-tech">
+        <span class="tech-pill">TypeScript</span>
+        <span class="tech-pill">React</span>
+        <span class="tech-pill">Gemini API</span>
+        <span class="tech-pill">Supabase</span>
+      </div>
+    </a>
+
+    <a class="project-card" href="https://github.com/manishabaloda4-cloud/scholarship-finder" target="_blank">
+      <span class="project-tag tag-web">Full Stack</span>
+      <div class="project-title">🎓 Scholarship Finder</div>
+      <div class="project-desc">AI-powered scholarship discovery tool for Indian students — matches students to relevant scholarships based on their profile and eligibility.</div>
+      <div class="project-tech">
+        <span class="tech-pill">TypeScript</span>
+        <span class="tech-pill">React</span>
+        <span class="tech-pill">AI Matching</span>
+      </div>
+    </a>
+
+    <a class="project-card" href="https://github.com/manishabaloda4-cloud/talentradar-ai" target="_blank">
+      <span class="project-tag tag-ai">AI Tool</span>
+      <div class="project-title">📡 TalentRadar AI</div>
+      <div class="project-desc">AI talent discovery and analysis platform — helps companies identify and evaluate candidates using intelligent screening and profiling.</div>
+      <div class="project-tech">
+        <span class="tech-pill">TypeScript</span>
+        <span class="tech-pill">React</span>
+        <span class="tech-pill">AI/ML</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section id="services">
+  <p class="section-label">Services</p>
+  <h2 class="section-title">What I can build for you</h2>
+  <p class="section-desc">Two clear offerings. Fixed prices. Fast delivery. No fluff.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🌐</div>
+      <div class="service-title">Business Website</div>
+      <div class="service-desc">Professional mobile-friendly website for your business. Gallery, services, contact form, WhatsApp button. Ready in 5–7 days.</div>
+      <div class="service-price">₹5,000 <span>onwards</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤖</div>
+      <div class="service-title">AI Chatbot</div>
+      <div class="service-desc">Custom AI chatbot for your website or WhatsApp. Answers customer questions 24/7. Built with latest AI. Delivered in 7 days.</div>
+      <div class="service-price">₹8,000 <span>onwards</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <div class="service-title">AI Automation Agent</div>
+      <div class="service-desc">Multi-agent systems for business automation — hiring pipelines, lead qualification, document processing. Custom built for your workflow.</div>
+      <div class="service-price">₹15,000 <span>onwards</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📞</div>
+      <div class="service-title">Free AI Audit Call</div>
+      <div class="service-desc">30-minute call where I analyze your business and tell you exactly which AI tools can save you time and money. Zero cost.</div>
+      <div class="service-price">Free <span>no commitment</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <p class="section-label">Tech Stack</p>
+  <h2 class="section-title">Tools I work with</h2>
+  <p class="section-desc">Full-stack capable — from AI backends to React frontends.</p>
+  <div class="skills-grid">
+    <div class="skill-pill">Python</div>
+    <div class="skill-pill">TypeScript</div>
+    <div class="skill-pill">React</div>
+    <div class="skill-pill">Next.js</div>
+    <div class="skill-pill">FastAPI</div>
+    <div class="skill-pill">Gemini API</div>
+    <div class="skill-pill">LangChain</div>
+    <div class="skill-pill">Supabase</div>
+    <div class="skill-pill">MongoDB</div>
+    <div class="skill-pill">Node.js</div>
+    <div class="skill-pill">Git & GitHub</div>
+    <div class="skill-pill">Vercel</div>
+  </div>
+</section>
+
+<section id="contact" style="padding-bottom: 80px;">
+  <div class="contact-box">
+    <h2>Let's build something together</h2>
+    <p>Have a project in mind? Need a website or AI tool for your business?<br>I respond within 24 hours.</p>
+    <div class="contact-links">
+      <a href="https://linkedin.com/in/manisha-baloda-11a254393" target="_blank" class="contact-link">💼 LinkedIn</a>
+      <a href="https://github.com/manishabaloda4-cloud" target="_blank" class="contact-link">💻 GitHub</a>
+      <a href="https://topmate.io/manishabaloda" target="_blank" class="contact-link">📅 Book a Call</a>
+      <a href="mailto:manisha@manishabaloda.tech" class="contact-link">✉️ Email Me</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built by Manisha Baloda · CSE (AI/ML) @ LPU · Open to freelance projects
+</footer>
+
+</body>
+</html>
