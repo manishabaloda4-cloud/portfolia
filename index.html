@@ -43,21 +43,6 @@
   }
   .hero-inner { max-width: 780px; text-align: center; position: relative; }
  
-  /* PHOTO */
-  .hero-photo {
-    width: 110px; height: 110px; border-radius: 50%;
-    border: 3px solid var(--accent); object-fit: cover;
-    margin-bottom: 24px; display: block; margin-left: auto; margin-right: auto;
-    box-shadow: 0 0 30px rgba(124,106,247,0.3);
-  }
-  .hero-photo-placeholder {
-    width: 110px; height: 110px; border-radius: 50%;
-    border: 3px solid var(--accent);
-    margin: 0 auto 24px; display: flex; align-items: center; justify-content: center;
-    font-size: 42px; background: var(--surface2);
-    box-shadow: 0 0 30px rgba(124,106,247,0.3);
-  }
- 
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
     background: rgba(124,106,247,0.1); border: 1px solid rgba(124,106,247,0.3);
@@ -66,14 +51,6 @@
   }
   .hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: inline-block; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
- 
-  /* CGPA BADGE */
-  .cgpa-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.3);
-    border-radius: 99px; padding: 5px 14px; margin-bottom: 24px; margin-left: 8px;
-    font-size: 12px; color: var(--green); font-weight: 500;
-  }
  
   .hero h1 {
     font-family: 'Space Grotesk', sans-serif;
